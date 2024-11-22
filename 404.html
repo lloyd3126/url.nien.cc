@@ -6,7 +6,7 @@
     <title>正在轉址...</title>
     <script type="text/javascript">
         (function () {
-            fetch('routes.json?v=' + new Date().getTime()')
+            fetch('routes.json?v=' + new Date().getTime())
                 .then(response => response.json())
                 .then(routes => {
                     var fragment = location.pathname.split('/').pop();
