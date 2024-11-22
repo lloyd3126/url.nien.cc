@@ -3,18 +3,14 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>正在轉址...</title>
+    <title>短網址服務</title>
     <script type="text/javascript">
         (function () {
-            fetch('routes.json?v=' + new Date().getTime())
+            fetch('routes.json')
                 .then(response => response.json())
                 .then(routes => {
-                    const pathParts = location.pathname.split('/').filter(Boolean); // 移除空白元素
-                    const lastOne = pathParts[pathParts.length - 1] || null;
-                    const lastTwo = pathParts[pathParts.length - 2] || null;
-                    if (lastTwo === "document") location.href = `./document/${lastOne}.md`
-                    if (lastTwo === "presentation") location.href = `./presentation/${lastOne}.html`
-                    const url = routes[lastTwo];
+                    const fragment = location.pathname.split('/').pop();
+                    const url = routes[fragment];
                     location.href = url ? url : 'https://blog.nien.cc';
                 });
         })();
