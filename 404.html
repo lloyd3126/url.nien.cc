@@ -9,8 +9,12 @@
             fetch('routes.json?v=' + new Date().getTime())
                 .then(response => response.json())
                 .then(routes => {
-                    var fragment = location.pathname.split('/').pop();
-                    var url = routes[fragment];
+                    const pathParts = location.pathname.split('/').filter(Boolean); // 移除空白元素
+                    const lastOne = pathParts[pathParts.length - 1] || null;
+                    const lastTwo = pathParts[pathParts.length - 2] || null;
+                    if (lastTwo.includes("doc")) location.href = `./doc/${lastOne}.md`
+                    let fragment = location.pathname.split('/').pop();
+                    let url = routes[fragment];
                     location.href = url ? url : 'https://blog.nien.cc';
                 });
         })();
