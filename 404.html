@@ -12,9 +12,9 @@
                     const pathParts = location.pathname.split('/').filter(Boolean); // 移除空白元素
                     const lastOne = pathParts[pathParts.length - 1] || null;
                     const lastTwo = pathParts[pathParts.length - 2] || null;
-                    if (lastTwo.includes("doc")) location.href = `./doc/${lastOne}.md`
-                    let fragment = location.pathname.split('/').pop();
-                    let url = routes[fragment];
+                    if (lastTwo === "document") location.href = `./document/${lastOne}.md`
+                    if (lastTwo === "presentation") location.href = `./presentation/${lastOne}.html`
+                    const url = routes[lastTwo];
                     location.href = url ? url : 'https://blog.nien.cc';
                 });
         })();
